@@ -27,7 +27,7 @@ pipe = Pipeline([
     ('cardinality_reducer', CardinalityReducer(CATEGORICAL, threshold=0.1)),
     ('encoder', Encoder(CATEGORICAL)),
     ('num_imputer', Imputer(NUMERICAL, method='mean')), 
-    ('feature_selector', RFE(LogisticRegression(random_state=SEED, max_iter=300), n_features_to_select=8)), 
+    ('feature_selector', RFE(LogisticRegression(random_state=SEED, max_iter=500), n_features_to_select=8)), 
     ('model', LogisticRegression(random_state=SEED, max_iter=300))
 ])
 X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=TARGET), df[TARGET], 
