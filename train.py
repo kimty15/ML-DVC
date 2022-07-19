@@ -12,7 +12,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import RFE
 from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
-
+from sklearn.ensemble import RandomForestRegressor
 df = pd.read_csv('data.csv')
 SEED = 42
 TARGET = 'survived'
@@ -28,7 +28,7 @@ pipe = Pipeline([
     ('encoder', Encoder(CATEGORICAL)),
     ('num_imputer', Imputer(NUMERICAL, method='mean')), 
     ('feature_selector', RFE(LogisticRegression(random_state=SEED, max_iter=500), n_features_to_select=8)), 
-    ('model', LogisticRegression(random_state=SEED, max_iter=300))
+    ('model', RandomForestRegressor(random_state=SEED, max_depth=5))
 ])
 X_train, X_test, y_train, y_test = train_test_split(df.drop(columns=TARGET), df[TARGET], 
                                                     test_size=.2, random_state=SEED, 
