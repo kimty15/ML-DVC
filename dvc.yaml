@@ -2,7 +2,7 @@ stages:
   get_data:
     cmd: python Get_data.py
     deps:
-    - get_data.py
+    - Get_data.py
     outs:
     - data.csv
   train:
